@@ -61,12 +61,6 @@ CREATE TABLE IF NOT EXISTS users (
 );
 ```
 
-2. Run the script:
-
-```bash
-node path/to/your/script/that/creates/the/table.js
-```
-
 ### 5. Run the Application
 
 To start the development server, use:
