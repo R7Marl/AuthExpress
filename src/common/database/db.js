@@ -1,6 +1,7 @@
 import mysql from 'mysql';
 import { configDotenv } from 'dotenv';
 import { readFileSync } from 'fs';
+import { promisify } from 'util';
 configDotenv({ path: ".env"});
 const pool = mysql.createPool({
     host: process.env.DB_HOST,
@@ -9,16 +10,11 @@ const pool = mysql.createPool({
     multipleStatements: true,
     connectionLimit: 10,
     waitForConnections: true,
-    queryFormat: function(query, values) {
-        if (!values) return query;
-        return query.replace(/\:(\w+)/g, function(txt, key) {
-            if (values.hasOwnProperty(key)) {
-                return mysql.escape(values[key]);
-            }
-            return txt;
-        });
+    queryFormat: (query, values) => {
+        if (!values) return query
+        return mysql.format(query, values)
     }
-})
+})//
 console.log("Conectando a la base de datos...")
 
 pool.getConnection((err, connection) => {
@@ -33,4 +29,6 @@ pool.getConnection((err, connection) => {
     }
     console.log("[DATABASE] Conectado a la base de datos");
 })
+
+//pool.query = promisify(pool.query);
 export default pool;

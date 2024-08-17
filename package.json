@@ -13,11 +13,17 @@
   "type": "module",
   "dependencies": {
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "express-mysql-session": "^3.0.3",
+    "express-session": "^1.18.0",
+    "express-validator": "^7.2.0",
     "fs": "^0.0.1-security",
     "jsonwebtoken": "^9.0.2",
     "mysql": "^2.18.1",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
     "utils": "^0.3.1"
   }
 }
